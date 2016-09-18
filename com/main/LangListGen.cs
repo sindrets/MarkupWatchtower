@@ -16,12 +16,12 @@ namespace MarkupWatchtower.com.main
 		""HAML"": {
 			""input"": "".haml"",
 			""output"": "".html"",
-			""command"": ""haml !input! !output!""
+			""command"": ""haml !input! > !output!""
 		},
 		""SASS"": {
 			""input"": ["".scss"", "".sass""],
 			""output"": "".css"",
-			""command"": ""sass !input! !output!""
+			""command"": ""sass !input! > !output!""
 		},
 		""Jade"": {
 			""input"": "".jade"",
