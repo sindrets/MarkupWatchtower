@@ -36,7 +36,6 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -51,7 +50,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.layoutPanelBottom);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.splitContainer1.Size = new System.Drawing.Size(700, 557);
-            this.splitContainer1.SplitterDistance = 324;
+            this.splitContainer1.SplitterDistance = 322;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
@@ -59,9 +58,10 @@
             // 
             this.layoutMainTop.AutoScroll = true;
             this.layoutMainTop.Controls.Add(this.btnAdd);
+            this.layoutMainTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutMainTop.Location = new System.Drawing.Point(0, 0);
             this.layoutMainTop.Name = "layoutMainTop";
-            this.layoutMainTop.Size = new System.Drawing.Size(697, 328);
+            this.layoutMainTop.Size = new System.Drawing.Size(700, 322);
             this.layoutMainTop.TabIndex = 0;
             // 
             // btnAdd
@@ -72,6 +72,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Location = new System.Drawing.Point(3, 3);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 3, 540, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(130, 42);
             this.btnAdd.TabIndex = 4;
@@ -84,12 +85,14 @@
             this.layoutPanelBottom.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.layoutPanelBottom.ColumnCount = 1;
             this.layoutPanelBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutPanelBottom.Location = new System.Drawing.Point(3, 3);
+            this.layoutPanelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutPanelBottom.Location = new System.Drawing.Point(0, 0);
             this.layoutPanelBottom.Margin = new System.Windows.Forms.Padding(20);
             this.layoutPanelBottom.Name = "layoutPanelBottom";
+            this.layoutPanelBottom.Padding = new System.Windows.Forms.Padding(8);
             this.layoutPanelBottom.RowCount = 1;
             this.layoutPanelBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutPanelBottom.Size = new System.Drawing.Size(694, 197);
+            this.layoutPanelBottom.Size = new System.Drawing.Size(700, 231);
             this.layoutPanelBottom.TabIndex = 0;
             this.layoutPanelBottom.TabStop = true;
             // 
@@ -99,9 +102,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ClientSize = new System.Drawing.Size(700, 557);
             this.Controls.Add(this.splitContainer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(718, 604);
             this.Name = "WatcherWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

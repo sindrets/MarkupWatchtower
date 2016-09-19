@@ -169,7 +169,9 @@ namespace MarkupWatchtower.com.main
             this.pnlMain.Controls.Add(this.btnDelete);
             this.pnlMain.Location = new System.Drawing.Point(3, 3);
             this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Dock = DockStyle.Fill;
             this.pnlMain.Size = new System.Drawing.Size(670, 86);
+            this.pnlMain.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
             this.pnlMain.TabIndex = 3;
         }
 

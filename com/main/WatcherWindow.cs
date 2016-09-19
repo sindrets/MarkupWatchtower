@@ -9,7 +9,7 @@ namespace HamlWatchtowerApp
 {
     public partial class WatcherWindow : Form
     {
-        public static readonly string VERSION = "1.0.2";
+        public static readonly string VERSION = "1.0.3";
         public static int IdCounter = 0;
         public static List<MarkupObject> mObjects = new List<MarkupObject>();
         public static List<MarkupWatcher> watcherObjects = new List<MarkupWatcher>();
@@ -120,12 +120,11 @@ namespace HamlWatchtowerApp
             txtLog.ForeColor = System.Drawing.Color.FromArgb(160, 215, 163);
             txtLog.BackColor = System.Drawing.Color.FromArgb(45, 45, 48);
             txtLog.BorderStyle = BorderStyle.None;
-            txtLog.Dock = DockStyle.Fill;
             txtLog.HideSelection = false;
             txtLog.Location = new System.Drawing.Point(3, 3);
             txtLog.Name = "txtLog";
             txtLog.ReadOnly = true;
-            txtLog.Size = new System.Drawing.Size(694, 191);
+            txtLog.Dock = DockStyle.Fill;
             txtLog.Text = "";
             txtLog.WordWrap = false;
             txtLog.TabStop = false;
@@ -168,6 +167,12 @@ namespace HamlWatchtowerApp
             this.layoutMainTop.Controls.Add(mp.getPanel());
             int i = this.layoutMainTop.Controls.GetChildIndex(btnAdd);
             this.layoutMainTop.Controls.SetChildIndex(btnAdd, i + 1);
+        }
+
+        private void WatcherWindow_SizeChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("fired");
+            //txtLog.Dock = DockStyle.Fill;
         }
     }
 }
