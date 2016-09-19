@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarkupWatchtower.com.main
 {
@@ -16,12 +12,12 @@ namespace MarkupWatchtower.com.main
 		""HAML"": {
 			""input"": "".haml"",
 			""output"": "".html"",
-			""command"": ""haml !input! !output!""
+			""command"": ""haml !input! > !output!""
 		},
 		""SASS"": {
 			""input"": ["".scss"", "".sass""],
 			""output"": "".css"",
-			""command"": ""sass !input! !output!""
+			""command"": ""sass !input! > !output!""
 		},
 		""Jade"": {
 			""input"": "".jade"",
