@@ -8,9 +8,10 @@ A watcher can be added simply with the click of a button, and once set up and co
 #Compiling
 Markup Watchtower still uses the command line preprocessors provided by the developers of the languages, and so it is still required that you have these insalled for the automatic compiling to work. The preprocessors for the languages that are available in this application right now (HAML, SASS, Jade, Pug, Coffee-Script, Babel) can be installed through either Ruby (check http://rubyinstaller.org/) or NPM (https://www.npmjs.com/). 
 However, once the tools are installed and you have set up some watchers, Markup Watchtower will automatically detect file changes to files of specified type, and compile them to the same directory they are currently in.
+
 ![Figure 2](https://raw.githubusercontent.com/sindrets/MarkupWatchtower/master/img/figure2.PNG)
 
-By default, the Watchtower will monitor all subdirectories of specified directory. There is currently no way of changing this behaviour although I will address that in the next update. 
+By default, the Watchtower will monitor all subdirectories of specified folder. This can easily be changed by unchecking the check box labeled "Subdirectories".
 
 #Customizability
 Do you have a language you wish was implemented? No worries! It is super simple to add: after running the application once, it will generate a file called "markupList.json". This is where the Watchtower reads to determine the available languages. If you wish to add your own, you just need to follow the JSON format, and specify the required information:

@@ -60,10 +60,16 @@ namespace MarkupWatchtower.com.main
                 }
             }
         }
+        public void setSubDir(bool b)
+        {
+            chkSubDirs.Checked = b;
+        }
 
         private void init()
         {
             options = new ComboBox();
+            lblSubDirs = new Label();
+            chkSubDirs = new CheckBox();
             btnChange = new Button();
             lblDirInfo = new Label();
             lblDir = new Label();
@@ -85,6 +91,22 @@ namespace MarkupWatchtower.com.main
             this.options.MouseWheel += new MouseEventHandler(this.options_MouseWheel);
             this.options.TabIndex = 0;
             this.options.SelectedIndex = 0;
+            //
+            // lblSubDirs
+            //
+            this.lblSubDirs.ForeColor = foreground;
+            this.lblSubDirs.AutoSize = true;
+            this.lblSubDirs.Location = new System.Drawing.Point(135, 12);
+            this.lblSubDirs.Name = "lblSubDirs";
+            this.lblSubDirs.Size = new System.Drawing.Size(80, 17);
+            this.lblSubDirs.TabIndex = 0;
+            this.lblSubDirs.Text = "Subdirectories";
+            //
+            // chkSubDirs
+            //
+            this.chkSubDirs.Location = new Point(238, 11);
+            this.chkSubDirs.CheckState = CheckState.Checked;
+            this.chkSubDirs.CheckStateChanged += new EventHandler(chkSubDirs_StateChanged);
             // 
             // btnChange
             // 
@@ -140,6 +162,8 @@ namespace MarkupWatchtower.com.main
             this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMain.Controls.Add(this.btnChange);
             this.pnlMain.Controls.Add(this.options);
+            this.pnlMain.Controls.Add(this.lblSubDirs);
+            this.pnlMain.Controls.Add(this.chkSubDirs);
             this.pnlMain.Controls.Add(this.lblDirInfo);
             this.pnlMain.Controls.Add(this.lblDir);
             this.pnlMain.Controls.Add(this.btnDelete);
@@ -165,14 +189,22 @@ namespace MarkupWatchtower.com.main
         }
 
         //OPTIONS
-        private void options_SelectedIndexChanged(Object sender, EventArgs e)
+        private void options_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateWatcherArgs(options.GetItemText(options.SelectedItem));
         }
-        private void options_MouseWheel(Object sender, MouseEventArgs e)
+        private void options_MouseWheel(object sender, MouseEventArgs e)
         {
             if (!((ComboBox)sender).DroppedDown)
                 ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+        //CHKSUBDIRS
+        private void chkSubDirs_StateChanged(object sender, EventArgs e)
+        {
+            watcher.setIncludeSubdirectories(((CheckBox)sender).Checked);
+            if (!dir.Equals("none"))
+                watcher.saveToJson();
         }
 
         //CHANGE DIR
@@ -211,6 +243,8 @@ namespace MarkupWatchtower.com.main
 
         private Panel pnlMain;
         private ComboBox options;
+        private Label lblSubDirs;
+        private CheckBox chkSubDirs;
         private Button btnChange;
         private Label lblDirInfo;
         private Label lblDir;

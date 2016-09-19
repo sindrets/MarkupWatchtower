@@ -9,6 +9,7 @@ namespace HamlWatchtowerApp
 {
     public partial class WatcherWindow : Form
     {
+        public static readonly string VERSION = "1.0.2";
         public static int IdCounter = 0;
         public static List<MarkupObject> mObjects = new List<MarkupObject>();
         public static List<MarkupWatcher> watcherObjects = new List<MarkupWatcher>();
@@ -35,7 +36,11 @@ namespace HamlWatchtowerApp
             }
             if (!File.Exists(jsonPath))
             {
-                string s = @"{""watchers"": {}}";
+                string s = 
+@"{
+    ""version"":"+@""""+VERSION+@""",
+    ""watchers"": {}
+}";
                 File.WriteAllText(jsonPath, s);
             }
             LoadLang();
@@ -45,26 +50,27 @@ namespace HamlWatchtowerApp
             string mainJson = File.ReadAllText(listPath);
             JObject jo = JObject.Parse(mainJson);
             JObject lang = jo["markup"] as JObject;
-            foreach (var key in lang.Children())
+            foreach (JToken key in lang.Children())
             {
-                MarkupObject mo = new MarkupObject();
-                mo.Name = ((JProperty)key).Name;
-                foreach (var p in key.Children())
+                MarkupObject mObj = new MarkupObject();
+                mObj.Name = ((JProperty)key).Name;
+                foreach (JToken token in key.Children())
                 {
-                    mo.Output = (string)((JObject)p).Property("output").Value;
-                    mo.Command = (string)((JObject)p).Property("command").Value;
-                    if (((JObject)p).Property("input").Value.Type == JTokenType.Array)
+                    JObject child = (JObject)token;
+                    mObj.Output = (string)(child).Property("output").Value;
+                    mObj.Command = (string)(child).Property("command").Value;
+                    if ((child).Property("input").Value.Type == JTokenType.Array)
                     {
-                        var arr = ((JArray)(((JObject)p).Property("input").Value));
+                        var arr = ((JArray)((child).Property("input").Value));
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mo.Input.Add((string)arr[i]);
+                            mObj.Input.Add((string)arr[i]);
                         }
                         continue;
                     }
-                    mo.Input.Add((string)((JObject)p).Property("input").Value);
+                    mObj.Input.Add((string)(child).Property("input").Value);
                 }
-                mObjects.Add(mo);
+                mObjects.Add(mObj);
             }
         }
 
@@ -86,18 +92,20 @@ namespace HamlWatchtowerApp
                 else input.Add((string)w["input"]);
 
                 mp.updateComboBox((string)w["name"]);
+                mp.setSubDir((bool)w["subdirectories"]);
                 mp.setDirText(s);
                 mp.getWatcher().setID(i);
                 mp.getWatcher().setFolderPath(s);
                 mp.getWatcher().setName((string)w["name"]);
-                mp.getWatcher().setCommand((string)w["command"]);
                 mp.getWatcher().setInput(input);
                 mp.getWatcher().setOutput((string)w["output"]);
+                mp.getWatcher().setSubdirectries((bool)w["subdirectories"]);
+                mp.getWatcher().setCommand((string)w["command"]);
                 mp.getWatcher().update();
 
-                this.layoutMainTop.Controls.Add(mp.getPanel());
-                int j = this.layoutMainTop.Controls.GetChildIndex(btnAdd);
-                this.layoutMainTop.Controls.SetChildIndex(btnAdd, j + 1);
+                layoutMainTop.Controls.Add(mp.getPanel());
+                int j = layoutMainTop.Controls.GetChildIndex(btnAdd);
+                layoutMainTop.Controls.SetChildIndex(btnAdd, j + 1);
                 
                 i++;
             }

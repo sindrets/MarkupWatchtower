@@ -17,6 +17,7 @@ namespace MarkupWatchtower.com.main
         private string name;
         private string output;
         private string command;
+        private bool subdirectories = true;
         private List<string> input = new List<string>();
 
         public MarkupWatcher()
@@ -107,10 +108,6 @@ namespace MarkupWatchtower.com.main
         {
             this.name = name;
         }
-        public void setCommand(string command)
-        {
-            this.command = command;
-        }
         public void setInput(List<string> input)
         {
             this.input = input;
@@ -119,14 +116,40 @@ namespace MarkupWatchtower.com.main
         {
             this.output = output;
         }
+        public void setSubdirectries(bool boolean)
+        {
+            this.subdirectories = boolean;
+        }
+        public void setCommand(string command)
+        {
+            this.command = command;
+        }
+        public void setIncludeSubdirectories(bool b)
+        {
+            watcher.IncludeSubdirectories = b;
+            subdirectories = b;
+            if (b) Output("All subdirectories included\n");
+            else Output("All subdirectories excluded\n");
+        }
         public void Log()
         {
             string files = "";
             foreach (string str in input)
             {
-                files += "'" + str + "' and ";
+                files += "'" + str + "', ";
             }
-            files = files.Remove(files.Length - 5);
+            int i = files.LastIndexOf(",");
+            int j = files.LastIndexOf(",", i - 1);
+            if (j != -1)
+            {
+                files = files.Remove(j, 2);
+                files = files.Insert(j, " and ");
+            } else
+            {
+                files = files.Remove(i, 2);
+                files = files.Insert(i, " and ");
+            }
+            files = files.Remove(files.Length - 2);
             Console.WriteLine("Listening for changes to " + files + " files in: " + pathToFolder);
             Output("Listening for changes to " + files + " files in: " + pathToFolder + "\n");
         }
@@ -146,12 +169,16 @@ namespace MarkupWatchtower.com.main
                     inp += @"""" + str + @""",";
                 }
                 inp = inp.Remove(inp.Length - 1) + "],";
+
+                string subDir = subdirectories.ToString().ToLower();
+                Console.WriteLine(subDir);
                 JObject watchers = jo["watchers"] as JObject;
                 watchers.Add(ID.ToString(), JToken.Parse(
                     @"{""path"":" + @"""" + s + @""","
                     + @"""name"":" + @"""" + name + @""","
                     + @"""input"":" + inp
-                    + @"""output"":" + @"""" + output + @"""," 
+                    + @"""output"":" + @"""" + output + @""","
+                    + @"""subdirectories"":" + subDir + ","
                     + @"""command"":" + @"""" + command + @"""}"));
             } else
             {
@@ -160,6 +187,7 @@ namespace MarkupWatchtower.com.main
                 watchers["name"] = name;
                 watchers["input"] = new JArray(input.ToArray());
                 watchers["output"] = output;
+                watchers["subdirectories"] = subdirectories;
                 watchers["command"] = command;
             }
             File.WriteAllText(jsonPath, jo.ToString());
@@ -179,9 +207,9 @@ namespace MarkupWatchtower.com.main
             string newName = name.Remove(i, nameLength - i) + output;
             filePath = filePath.Remove(filePath.Length - 1) + newName + "\"";
 
-            Console.WriteLine("\n" + "File \'" + name + "\' was changed.");
+            Console.WriteLine("\n" + "File \'" + name + "\' was modified.");
             Console.WriteLine("Compiling to " + filePath + ".");
-            string s1 = "\n" + "File \'" + name + "\' was changed.";
+            string s1 = "\n" + "File \'" + name + "\' was modified.";
             string s2 = "\n" + "Compiling to " + filePath + ".\n";
             Output(s1);
             Output(s2);
@@ -209,7 +237,29 @@ namespace MarkupWatchtower.com.main
             }
             else
             {
+                if (text.Substring(0,1).Equals("\n"))
+                {
+                    text = text.Substring(1);
+                    WatcherWindow.txtLog.AppendText("\n");
+                }
+                WatcherWindow.txtLog.SelectionColor = System.Drawing.Color.FromArgb(86,156,214);
+                WatcherWindow.txtLog.AppendText("Watcher "+ID+": ");
+                WatcherWindow.txtLog.SelectionColor = WatcherWindow.txtLog.ForeColor;
                 WatcherWindow.txtLog.AppendText(text);
+            }
+        }
+        private void Output(string text, System.Drawing.Color color)
+        {
+            if (WatcherWindow.txtLog.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(Output);
+                WatcherWindow.txtLog.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                WatcherWindow.txtLog.SelectionColor = color;
+                WatcherWindow.txtLog.AppendText(text);
+                WatcherWindow.txtLog.SelectionColor = WatcherWindow.txtLog.ForeColor;
             }
         }
 
