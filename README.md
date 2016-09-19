@@ -6,7 +6,7 @@ Markup Watchtower is a tool designed for speeding up your workflow while working
 A watcher can be added simply with the click of a button, and once set up and connected to a directory, the information about the watcher is saved. The application will automatically load and start all your watchers upon launching the program. 
 
 #Compiling
-Markup Watchtower still uses the command line parsing tools provided by the developers of the languages, and so it is still required that you have these insalled for the automatic compiling to work. The tools for the languages that are available in this application right now (HAML, SASS, Jade, Pug, Coffee-Script, Babel) can be installed through either Ruby (check http://rubyinstaller.org/ for Windows users) or NPM (https://www.npmjs.com/). 
+Markup Watchtower still uses the command line preprocessors provided by the developers of the languages, and so it is still required that you have these insalled for the automatic compiling to work. The preprocessors for the languages that are available in this application right now (HAML, SASS, Jade, Pug, Coffee-Script, Babel) can be installed through either Ruby (check http://rubyinstaller.org/) or NPM (https://www.npmjs.com/). 
 However, once the tools are installed and you have set up some watchers, Markup Watchtower will automatically detect file changes to files of specified type, and compile them to the same directory they are currently in.
 ![Figure 2](https://raw.githubusercontent.com/sindrets/MarkupWatchtower/master/img/figure2.PNG)
 
@@ -20,6 +20,15 @@ Do you have a language you wish was implemented? No worries! It is super simple 
     "input" - This is where you specify what file extensions the watcher will filter. You can specify multiple extensions as seen here with the ".scss" and ".css" extensions.
     "output" - Here you specify what file extension the compiled document will have.
     "command" - This is the command to be run through cmd. The "!input!" and "!output!" keywords are replaced with the path to the file that is to be compiled and the path to the resulting compiled file, respectively. The keywords do NOT have to be included if these paths are unnecessary to the command.
+
+#Information
+For information about:
+* HAML, visit: http://haml.info/
+* SASS, visit: http://sass-lang.com/
+* Jade, visit: https://www.npmjs.com/package/jade
+* Pug, visit: https://pugjs.org/
+* Coffee-Script, visit: http://coffeescript.org/
+* Babel, visit: https://babeljs.io/
   
 #Legal Information
 Markup Watchtower
