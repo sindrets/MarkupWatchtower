@@ -49,8 +49,8 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.splitContainer1.Panel2.Controls.Add(this.layoutPanelBottom);
             this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.splitContainer1.Size = new System.Drawing.Size(700, 557);
-            this.splitContainer1.SplitterDistance = 322;
+            this.splitContainer1.Size = new System.Drawing.Size(700, 563);
+            this.splitContainer1.SplitterDistance = 326;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
@@ -61,7 +61,7 @@
             this.layoutMainTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutMainTop.Location = new System.Drawing.Point(0, 0);
             this.layoutMainTop.Name = "layoutMainTop";
-            this.layoutMainTop.Size = new System.Drawing.Size(700, 322);
+            this.layoutMainTop.Size = new System.Drawing.Size(700, 326);
             this.layoutMainTop.TabIndex = 0;
             // 
             // btnAdd
@@ -92,7 +92,7 @@
             this.layoutPanelBottom.Padding = new System.Windows.Forms.Padding(8);
             this.layoutPanelBottom.RowCount = 1;
             this.layoutPanelBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutPanelBottom.Size = new System.Drawing.Size(700, 231);
+            this.layoutPanelBottom.Size = new System.Drawing.Size(700, 233);
             this.layoutPanelBottom.TabIndex = 0;
             this.layoutPanelBottom.TabStop = true;
             // 
@@ -100,10 +100,10 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ClientSize = new System.Drawing.Size(700, 557);
+            this.ClientSize = new System.Drawing.Size(700, 563);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(718, 604);
+            this.MinimumSize = new System.Drawing.Size(718, 610);
             this.Name = "WatcherWindow";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Markup Watchtower";

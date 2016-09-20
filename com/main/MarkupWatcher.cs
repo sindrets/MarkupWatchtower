@@ -144,12 +144,8 @@ namespace MarkupWatchtower.com.main
             {
                 files = files.Remove(j, 2);
                 files = files.Insert(j, " and ");
-            } else
-            {
-                files = files.Remove(i, 2);
-                files = files.Insert(i, " and ");
             }
-            files = files.Remove(files.Length - 2);
+            files = files.Remove(files.Length-2, 2);
             Console.WriteLine("Listening for changes to " + files + " files in: " + pathToFolder);
             Output("Listening for changes to " + files + " files in: " + pathToFolder + "\n");
         }
