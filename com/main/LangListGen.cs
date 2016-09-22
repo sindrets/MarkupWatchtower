@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamlWatchtowerApp;
+using System;
 using System.IO;
 
 namespace MarkupWatchtower.com.main
@@ -8,6 +9,7 @@ namespace MarkupWatchtower.com.main
         private static string path = Environment.CurrentDirectory + "\\markupList.json";
         private string text =
 @"{
+    ""version"": """+WatcherWindow.VERSION+@""",
 	""markup"": {
 		""HAML"": {
 			""input"": "".haml"",
@@ -17,7 +19,7 @@ namespace MarkupWatchtower.com.main
 		""SASS"": {
 			""input"": ["".scss"", "".sass""],
 			""output"": "".css"",
-			""command"": ""sass !input! > !output!""
+			""command"": ""sass !input! --style expanded > !output!""
 		},
 		""Jade"": {
 			""input"": "".jade"",

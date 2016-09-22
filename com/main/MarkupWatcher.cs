@@ -26,7 +26,7 @@ namespace MarkupWatchtower.com.main
             WatcherWindow.IdCounter++;
             setMObject(WatcherWindow.getMObject("HAML"));
             watcher = new FileSystemWatcher();
-            WatcherWindow.addWatcher(this);
+            WatcherWindow.AddWatcher(this);
         }
 
         private void readMObject()
@@ -86,7 +86,7 @@ namespace MarkupWatchtower.com.main
             }
             File.WriteAllText(jsonPath, jo.ToString());
 
-            WatcherWindow.removeAndClean(ID, this);
+            WatcherWindow.RemoveAndClean(ID, this);
 
             Output("Sucessfully shut down and removed watcher!\n");
         }
@@ -174,8 +174,7 @@ namespace MarkupWatchtower.com.main
                     + @"""name"":" + @"""" + name + @""","
                     + @"""input"":" + inp
                     + @"""output"":" + @"""" + output + @""","
-                    + @"""subdirectories"":" + subDir + ","
-                    + @"""command"":" + @"""" + command + @"""}"));
+                    + @"""subdirectories"":" + subDir + "}"));
             } else
             {
                 JObject watchers = jo["watchers"][ID.ToString()] as JObject;
@@ -184,7 +183,6 @@ namespace MarkupWatchtower.com.main
                 watchers["input"] = new JArray(input.ToArray());
                 watchers["output"] = output;
                 watchers["subdirectories"] = subdirectories;
-                watchers["command"] = command;
             }
             File.WriteAllText(jsonPath, jo.ToString());
         }
@@ -212,8 +210,11 @@ namespace MarkupWatchtower.com.main
 
             string c = command;
             int j = c.IndexOf("!input!");
-            c = c.Remove(j, 7);
-            c = c.Insert(j, " \"" + e.FullPath + "\"");
+            if (j != -1)
+            {
+                c = c.Remove(j, 7);
+                c = c.Insert(j, " \"" + e.FullPath + "\"");
+            }
             j = c.IndexOf("!output!");
             if (j != -1)
             {
