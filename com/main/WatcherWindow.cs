@@ -136,10 +136,6 @@ namespace HamlWatchtowerApp
                 var w = watchers[i.ToString()];
                 MarkupPanel mp = new MarkupPanel();
                 string s = ((string)w["path"]).Replace("/", "\\");
-                List<string> input = new List<string>();
-                if (w["input"].Type == JTokenType.Array)
-                    input = ((JArray)w["input"]).ToObject<List<string>>();
-                else input.Add((string)w["input"]);
 
                 string name = (string)w["name"];
                 mp.updateComboBox(name);
@@ -148,8 +144,8 @@ namespace HamlWatchtowerApp
                 mp.getWatcher().setID(i);
                 mp.getWatcher().setFolderPath(s);
                 mp.getWatcher().setName(name);
-                mp.getWatcher().setInput(input);
-                mp.getWatcher().setOutput((string)w["output"]);
+                mp.getWatcher().setInput(getMObject(name).Input);
+                mp.getWatcher().setOutput(getMObject(name).Output);
                 mp.getWatcher().setSubdirectries((bool)w["subdirectories"]);
                 mp.getWatcher().setCommand(getMObject(name).Command);
                 mp.getWatcher().update();

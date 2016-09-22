@@ -170,18 +170,14 @@ namespace MarkupWatchtower.com.main
                 Console.WriteLine(subDir);
                 JObject watchers = jo["watchers"] as JObject;
                 watchers.Add(ID.ToString(), JToken.Parse(
-                    @"{""path"":" + @"""" + s + @""","
-                    + @"""name"":" + @"""" + name + @""","
-                    + @"""input"":" + inp
-                    + @"""output"":" + @"""" + output + @""","
+                    @"{""name"":" + @"""" + name + @""","
+                    + @"""path"":" + @"""" + s + @""","
                     + @"""subdirectories"":" + subDir + "}"));
             } else
             {
                 JObject watchers = jo["watchers"][ID.ToString()] as JObject;
-                watchers["path"] = s;
                 watchers["name"] = name;
-                watchers["input"] = new JArray(input.ToArray());
-                watchers["output"] = output;
+                watchers["path"] = s;
                 watchers["subdirectories"] = subdirectories;
             }
             File.WriteAllText(jsonPath, jo.ToString());
