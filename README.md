@@ -1,6 +1,7 @@
+#Markup Watchtower
+Automatically compile SASS, Jade, HAML and Coffe-Script.
 ![Markup Watchtower logo](https://raw.githubusercontent.com/sindrets/MarkupWatchtower/master/img/MarkupWatchtowerIcon_HalfSize.png)
-# Markup Watchtower
-Markup Watchtower is a tool designed for speeding up your workflow while working with stylesheet and markup languages that require to be compiled before they can be properly interpreted by the web-browser. While many of these languages provide tools to set up file system watchers through the command line, this application gathers all watchers in one place.
+<br>Markup Watchtower is a tool designed for speeding up your workflow while working with stylesheet and markup languages that require to be compiled before they can be properly interpreted by the web-browser. While many of these languages provide tools to set up file system watchers through the command line, this application gathers all watchers in one place.
 ![Figure 1](https://raw.githubusercontent.com/sindrets/MarkupWatchtower/master/img/figure1.PNG)
 
 A watcher can be added simply with the click of a button, and once set up and connected to a directory, the information about the watcher is saved. The application will automatically load and start all your watchers upon launching the program. 
