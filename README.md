@@ -19,7 +19,7 @@ Do you have a language you wish was implemented? No worries! It is super simple 
 ![Figure 2](https://raw.githubusercontent.com/sindrets/MarkupWatchtower/master/img/figure3.PNG)
 
     "SASS" - This is the property key. When adding your own key, set this to whatever you want it to show up as in the application.
-    "input" - This is where you specify what file extensions the watcher will filter. You can specify multiple extensions as seen here with the ".scss" and ".css" extensions.
+    "input" - This is where you specify what file extensions the watcher will filter. You can specify multiple extensions as seen here with the ".scss" and ".sass" extensions.
     "output" - Here you specify what file extension the compiled document will have.
     "command" - This is the command to be run through cmd. The "!input!" and "!output!" keywords are replaced with the path to the file that is to be compiled and the path to the resulting compiled file, respectively. The keywords do NOT have to be included if these paths are unnecessary to the command.
 
